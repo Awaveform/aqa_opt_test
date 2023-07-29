@@ -16,7 +16,7 @@ This is a Python Playwright automation project for testing web applications.
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/my_playwright_project.git
+    git clone https://github.com/Awaveform/aqa_opt_test.git
     cd my_playwright_project
    
 2. Install Playwright & dependencies:
@@ -24,3 +24,8 @@ This is a Python Playwright automation project for testing web applications.
     ```bash
     playwright install
     pip install -r requirements.txt
+
+3. Run the test, in the terminal:
+   ```
+   pytest
+   ```

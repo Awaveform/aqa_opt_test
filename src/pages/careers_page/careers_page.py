@@ -1,3 +1,5 @@
+from typing import Type
+
 from playwright.async_api import Page
 
 from src.pages.base_page.base_page import BasePage
@@ -17,8 +19,11 @@ class CareersPage(BasePage):
         logger (Logger): The Loguru logger object for logging messages and
         events.
     """
-    def __init__(self, page: Page):
-        super().__init__(page=page, locators=CareersLocators)
+    def __init__(
+            self, page: Page,
+            locators: Type[CareersLocators] = CareersLocators
+    ):
+        super().__init__(page=page, locators=locators)
 
     async def open_careers_page(self) -> None:
         """

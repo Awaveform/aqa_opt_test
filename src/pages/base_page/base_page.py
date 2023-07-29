@@ -1,13 +1,10 @@
-"""
-
-"""
-from dataclasses import dataclass
-from typing import Type, Any
+from typing import Type
 
 from loguru import logger
 from playwright.async_api import Page
 
 from src.pages.base_page.base_locators import BasePageLocators
+from src.pages.careers_page.careers_locators import CareersLocators
 from src.utilities.locators_factory import LocatorFactory
 
 
@@ -23,7 +20,10 @@ class BasePage:
         logger (Logger): The Loguru logger object for logging messages and
         events.
     """
-    def __init__(self, page: Page, locators: Any):
+    def __init__(
+            self, page: Page,
+            locators: Type[BasePageLocators] = BasePageLocators
+    ):
         self.page = page
         self.logger = logger
         self.loc = LocatorFactory(

@@ -1,14 +1,12 @@
 import os
-from typing import Any
-
-import pytest
 import sys
-
+import pytest
 import pytest_asyncio
-from loguru import logger
-from playwright.async_api import async_playwright
 
-from src.pages.base_page.base_locators import BasePageLocators
+from typing import Any
+from loguru import logger
+
+from playwright.async_api import async_playwright
 from src.pages.base_page.base_page import BasePage
 from src.pages.careers_page.careers_page import CareersPage
 
@@ -113,7 +111,7 @@ def base_page(start_async_browser: callable):
     param for creation of BasePage instance.
     :return: The instance of the class 'BasePage'.
     """
-    return BasePage(page=start_async_browser, locators=BasePageLocators)
+    return BasePage(page=start_async_browser)
 
 
 @pytest.fixture(name="optimove_page")

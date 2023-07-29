@@ -12,7 +12,9 @@ If value is str, example of usage:
 If value is locator object, example of usage:
     await self.loc.OFFICES_DROPDOWN.click()
 """
+from dataclasses import dataclass
 
 
-class BaseLocators:
+@dataclass
+class BasePageLocators:
     pass

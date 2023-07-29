@@ -18,8 +18,7 @@ class CareersPage(BasePage):
         events.
     """
     def __init__(self, page: Page):
-        super().__init__(page=page)
-        self.loc = CareersLocators(page=page)
+        super().__init__(page=page, locators=CareersLocators)
 
     async def open_careers_page(self) -> None:
         """
@@ -37,7 +36,7 @@ class CareersPage(BasePage):
         :return: None.
         """
         self.logger.info("Hovering over the brand link.")
-        await self.loc.BRAND_LINK.hover()
+        await self.loc.CAREERS_BRAND_LINK.hover()
 
     async def click_offices_dropdown(self) -> None:
         """
@@ -45,8 +44,8 @@ class CareersPage(BasePage):
         :return: None.
         """
         self.logger.info("Clicking on the offices dropdown.")
-        await self.loc.OFFICES_DROPDOWN.scroll_into_view_if_needed()
-        await self.loc.OFFICES_DROPDOWN.click()
+        await self.loc.CAREERS_OFFICES_DROPDOWN.scroll_into_view_if_needed()
+        await self.loc.CAREERS_OFFICES_DROPDOWN.click()
 
     async def select_ukr_office(self, office_val: str = "UKR") -> None:
         """
@@ -54,9 +53,7 @@ class CareersPage(BasePage):
         :return: None.
         """
         self.logger.info(f"Selecting the {office_val} office.")
-        await self.page.locator(
-            self.loc.OFFICES_UKR_VAL.format(office_val)
-        ).click()
+        await self.loc.CAREERS_OFFICES_DROPDOWN.click()
 
     async def scroll_to_aqa_job_title(self) -> None:
         """
@@ -64,7 +61,7 @@ class CareersPage(BasePage):
         :return: None.
         """
         self.logger.info("Scrolling to the AQA job title.")
-        await self.loc.AQA_JOB_TITLE.first.scroll_into_view_if_needed()
+        await self.loc.CAREERS_AQA_JOB_TITLE.first.scroll_into_view_if_needed()
 
     async def verify_visibility_of_aqa_job_title(self) -> None:
         """
@@ -72,6 +69,6 @@ class CareersPage(BasePage):
         Otherwise, raise TimeoutError.
         :return: None.
         """
-        await self.loc.AQA_JOB_TITLE.first.wait_for(
+        await self.loc.CAREERS_AQA_JOB_TITLE.first.wait_for(
             timeout=10000, state="visible"
         )

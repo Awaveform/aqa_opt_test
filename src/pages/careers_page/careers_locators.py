@@ -1,26 +1,27 @@
 """
 careers_locators.py
 
-This module contains the definition of locators used in the application.
+This module contains the definition of locators used in the application
+on the 'Careers' page.
 Locators are used to identify elements on web pages using XPath or CSS
 selectors.
 
-Locators are defined as class attributes in the CareersLocators class.
-
-If value is str, example of usage:
-    await self.page.locator(self.loc.OFFICES_UKR_VAL.format(office_val))
-If value is locator object, example of usage:
-    await self.loc.OFFICES_DROPDOWN.click()
+Use locators as an input data for LocatorFactory class, example:
+locator_factory = LocatorFactory(page, CareersLocators)
+locator_factory.CAREERS_OFFICES_DROPDOWN.click()
+locator_factory.CAREERS_OFFICES_UKR_VAL.format(office_val="UKR").click()
 """
-from playwright.async_api import Page
+from dataclasses import dataclass
+
+from src.pages.base_page.base_locators import BasePageLocators
 
 
-class CareersLocators:
+@dataclass
+class CareersLocators(BasePageLocators):
 
-    def __init__(self, page: Page):
-
-        self.AQA_JOB_TITLE = page.locator("//div[@class='job-card__title']//a[text()='QA Automation Engineer']")
-        self.BRAND_LINK = page.locator("//a[@class='brand']")
-        self.OFFICES_DROPDOWN = page.locator("//div[contains(@class, 'job-locations')]//span[contains(text(), 'All')]")
-        self.OFFICES_UKR_VAL = "//li[contains(text(), '{0}')]"
-        self.AQA_JOB_TITLE = page.locator("//div[@class='job-card__title']//a[text()='QA Automation Engineer']")
+    CAREERS_AQA_JOB_TITLE = "//div[@class='job-card__title']" \
+                            "//a[text()='QA Automation Engineer']"
+    CAREERS_BRAND_LINK = "//a[@class='brand']"
+    CAREERS_OFFICES_DROPDOWN = "//div[contains(@class, 'job-locations')]" \
+                               "//span[contains(text(), 'All')]"
+    CAREERS_OFFICES_UKR_VAL = "//li[contains(text(), '{office_val}')]"

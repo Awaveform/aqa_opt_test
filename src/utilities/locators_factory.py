@@ -33,7 +33,7 @@ class LocatorFactory:
         self.page = page
         self.locators = locators
 
-    def __getattr__(self, item: str, **kwargs) -> Locator:
+    def __getattr__(self, locator_val: str, **kwargs) -> Locator:
         """
         Changes getting of locator obj to these:
         self.locators: This refers to an object (in this case, self.locators)
@@ -43,16 +43,16 @@ class LocatorFactory:
         If the attribute exists, getattr will return its value.
         Raises 'AttributeError' if invalid value provided.
 
-        :param item: It is a string that represents the name of the attribute
-        you want to access within the object self.locators.
+        :param locator_val: It is a string that represents the name of the
+        attribute (locator) you want to access within the object self.locators.
         :param kwargs: Params for formatting of the locator's string value.
         :return: Playwright's locator object which can be used
         for interactions.
         """
-        locator = getattr(self.locators, item, None)
+        locator = getattr(self.locators, locator_val, None)
         if "{" in locator:
             return self.page.locator(selector=locator.format(**kwargs))
         if locator:
             return self.page.locator(selector=locator)
         raise AttributeError(
-            f"'LocatorFactory' object has no attribute '{item}'")
+            f"'LocatorFactory' object has no attribute '{locator_val}'")

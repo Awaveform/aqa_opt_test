@@ -9,7 +9,6 @@ This is a Python Playwright automation project for testing web applications.
 
 - Python 3.11 or higher
 - Playwright 1.36 or higher
-- Poetry (optional, for dependency management)
 
 ## Setup
 
